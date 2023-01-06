@@ -2,7 +2,9 @@
 #-*- coding: utf-8 -*-
 
 import os
+import sys
 import pymp
+import getopt
 import shutil
 import gitlab
 import subprocess
@@ -121,15 +123,37 @@ class GitHub():
         cmd = "gh repo clone {}".format(repo.decode("utf-8").strip())
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True, executable='/bin/bash')
         return p.stdout.readlines()
+    
+    def logout(self):
+        cmd = "gh auth logout"
+        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True, executable='/bin/bash')
+        return p.stdout.readlines()
 
 if __name__ == '__main__':
     
-    server = 'github.com' # 'github.com' 'gitlab.com'
-    token = 'xxxxxxxxxxxxxxxxxxxxxxxxx'
-        
-    try :
+    help_str = './main.py [-h] [-s] server [-t] token'
+    
+    server = None # 'github.com' 'gitlab.com'
+    token = None
+    
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "hs:t:")
+    
+        for opt, arg in opts:
+            if opt in ('-h'):
+                print(help_str)
+                exit()
+            elif opt in ('-s'):
+                server = arg
+            elif opt in ('-t'):
+                token = arg
+
+        if not server or not token :
+            print(help_str)
+            exit()
+
         git = gitReposDownloader(server, token)
-        
+
         # Скачиваем все репозитории
         git.clones()
 
@@ -140,3 +164,4 @@ if __name__ == '__main__':
         git.clear()
     except Exception as e :
         print("error: ", e)
+        print(help_str)
