@@ -124,19 +124,19 @@ class GitHub():
 
 if __name__ == '__main__':
     
-    server = 'github.com'
-    token = 'ghp_xxxxxxxxxxxxxxxxxxxxxxxxx'
-    
-    #server = 'gitlab.com'
-    #token = 'xxxxxxxxxxxxxxxxxxxxxxxxx'
-    
+    server = 'github.com' # 'github.com' 'gitlab.com'
+    token = 'xxxxxxxxxxxxxxxxxxxxxxxxx'
+        
     try :
         git = gitReposDownloader(server, token)
-
+        
+        # Скачиваем все репозитории
         git.clones()
 
+        # Архивируем репозитории
         git.compress()
 
+        # Удаляем папку со скаченными репозиториями
         git.clear()
     except Exception as e :
         print("error: ", e)
