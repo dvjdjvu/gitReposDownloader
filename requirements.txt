@@ -1,0 +1,2 @@
+pymp-pypi>=0.0.5
+python-gitlab>=3.12.0
