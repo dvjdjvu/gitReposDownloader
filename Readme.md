@@ -18,7 +18,7 @@ pip3 install -r requirements.txt
 
 Скачиваем все доступные репозитории:
 ```bash
-./src/main.py -s github.com -t ghp_XXXXXXXXXXXXXXXXXXX
+./src/main.py -s github.com -t ghp_TOKEN
 ```
 
 В папке запуска сгенерируется архив с Вашими проектами.
