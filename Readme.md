@@ -16,23 +16,9 @@ pip3 install -r requirements.txt
 
 ```
 
-Изменить в src/main.py **server** и **token** на Ваш сервер и токен доступа.
-```python
-
-if __name__ == '__main__':
-    
-    server = 'github.com'
-    token = 'ghp_xxxxxxxxxxxxxxxxxxxxxxxxx'
-    
-    #server = 'gitlab.com'
-    #token = 'xxxxxxxxxxxxxxxxxxxxxxxxx'
-
-```
-
-Запустить скрипт.
-
+Скачиваем все доступные репозитории:
 ```bash
-./src/main.py
+./src/main.py -s github.com -t ghp_XXXXXXXXXXXXXXXXXXX
 ```
 
 В папке запуска сгенерируется архив с Вашими проектами.
