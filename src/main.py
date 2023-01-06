@@ -45,6 +45,9 @@ class gitReposDownloader():
         with pymp.Parallel(multiprocessing.cpu_count()) as pmp:
             for r in pmp.range(0, len(repos)):
                 self.git.clone(repos[r])
+                
+        #for r in repos:
+        #    self.git.clone(r)
         
         os.chdir('../')
     
