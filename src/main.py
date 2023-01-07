@@ -42,6 +42,12 @@ class gitReposDownloader():
         
         repos = self.git.repos()
         
+        print('info: Will be cloned {} projects:'.format(len(repos)))
+        i = 1
+        for r in repos:
+            print('info: [{}]\t{}'.format(i, r.decode("utf-8").strip()))
+            i = i + 1
+        
         with pymp.Parallel(multiprocessing.cpu_count()) as pmp:
             for r in pmp.range(0, len(repos)):
                 self.git.clone(repos[r])
